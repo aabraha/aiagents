@@ -67,8 +67,8 @@ uv pip install -r careeragent/requirements.txt
 uv run python careeragent/career.py
 ```
 
-For full setup details (environment variables, required resource files, and usage), see:
-`careeragent/README.md`
+For full setup details (environment variables, required resource files, and usage), see individual project's 
+`README.md`
 
 ## Notes
 
