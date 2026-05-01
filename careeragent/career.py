@@ -181,4 +181,4 @@ If the user is engaging in discussion, try to steer them towards getting in touc
 
 if __name__ == "__main__":
     career = Career()
-    gr.ChatInterface(career.chat, title="Assefa Abraha's Career Assistant").launch()
+    gr.ChatInterface(career.chat,  title="Assefa Abraha's Career Assistant").launch()#type="messages" is deprecated

@@ -17,31 +17,42 @@ A Python application that runs an AI-powered **career chat assistant** in the br
 - An **OpenAI API key** with access to the configured model
 - Optional: a **Pushover** account and app for mobile/desktop notifications (for the recording tools)
 
+## Install uv
+
+This project uses [`uv`](https://docs.astral.sh/uv/) for Python environment and package management.
+
+**Windows (PowerShell):**
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+**macOS / Linux:**
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Verify installation:
+
+```bash
+uv --version
+```
+
 ## Setup
 
 ### 1. Clone and create a virtual environment
 
 ```bash
 cd aiagents
-python -m venv .venv
-```
-
-**Windows (PowerShell):**
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-**macOS / Linux:**
-
-```bash
-source .venv/bin/activate
+cd careeragent
+uv venv
 ```
 
 ### 2. Install dependencies
 
 ```bash
-pip install -r careeragent/requirements.txt
+uv pip install -r requirements.txt
 ```
 
 ### 3. Environment variables
@@ -80,10 +91,10 @@ These files often contain personal or proprietary information-keep them out of p
 
 ## Run
 
-With the virtual environment active and `careeragent/resources/` in place:
+With the virtual environment available and `resources/` in place:
 
 ```bash
-python careeragent/career.py
+uv run python career.py
 ```
 
 Gradio will start a local server and print a URL (for example `http://127.0.0.1:7860`). Open that address in a browser to use the chat UI titled **"Assefa Abraha's Career Assistant"**.
