@@ -25,7 +25,15 @@ Verify installation:
 uv --version
 ```
 
+**Python:** `pyproject.toml` targets **Python 3.12+**. Install shared deps from repo root with `uv sync` (uses `pyproject.toml` and `uv.lock`). The root `requirements.txt` is a compiled export from that manifest (`uv pip compile …`), not a second source of truth.
+
 ## Projects
+
+### `deep_research/`
+Multi-agent research flow (OpenAI Agents SDK) with a Gradio UI: plan searches, web search, write a report, optional email via SendGrid.
+
+- Entry: `deep_research/deep_research.py` (run with that directory as the working directory so local imports resolve)
+- Env: `OPENAI_API_KEY` (required); `SENDGRID_API_KEY` (for the email step). Configure sender/recipient in `deep_research/email_agent.py` as needed.
 
 ### `careeragent/`
 An AI-powered career chat assistant with a Gradio web UI.
@@ -43,8 +51,11 @@ What it does (high level):
 
 ```text
 aiagents/
+  deep_research/            # Deep research Gradio app
   careeragent/              # Career assistant project
-  requirements.txt          # Root-level Python dependencies (shared/global)
+  pyproject.toml            # Shared package deps (agents)
+  uv.lock                   # Lockfile for uv
+  requirements.txt          # Compiled from pyproject.toml (optional pip workflow)
   .gitignore                # Ignore rules for repo
   .env                      # Local environment variables (not for commit)
   .venv/                    # Local virtual environment (generated)
@@ -53,9 +64,20 @@ aiagents/
 
 ## Quick Navigation
 
-- Open project docs: `careeragent/README.md`
-- Run app code: `careeragent/career.py`
-- Install project deps (with uv): `uv pip install -r careeragent/requirements.txt`
+- Deep research: `deep_research/deep_research.py`
+- Career agent docs: `careeragent/README.md`
+- Career app: `careeragent/career.py`
+- Career-only deps (with uv): `uv pip install -r careeragent/requirements.txt`
+
+## Getting Started (Deep Research)
+
+From repository root:
+
+```bash
+uv sync
+cd deep_research
+uv run python deep_research.py
+```
 
 ## Getting Started (Career Agent)
 
